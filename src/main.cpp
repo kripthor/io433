@@ -11,11 +11,11 @@
 #define MINIMUM_COPYTIME_US 16000
 #define DUMP_RAW_MBPS 0.1 // as percentage of 1Mbps, us precision. (100kbps)
 #define BOUND_SAMPLES true
-#define MAXSIGS 8
 
 //ONLY USING ONE BUFFER FOR NOW, MUST BE REFACTORED TO SUPPORT MORE (AND MOVE TO SPIFFS)
 uint16_t signal433_store[MAXSIGS][BUFSIZE];
 uint16_t *signal433_current = signal433_store[0];
+
 
 int delayus = REPLAYDELAY;
 long lastCopyTime = 0;
@@ -264,6 +264,7 @@ void setup() {
   SimpleMenu *menu_replay = new SimpleMenu("Replay",menu_main,replay);
   SimpleMenu *menu_dump = new SimpleMenu("Dump",menu_main,dump);
   SimpleMenu *menu_more = new SimpleMenu("More",menu_main,NULL);
+
   SimpleMenu *menu_monitor = new SimpleMenu("Monitor",menu_more,monitormode);
   SimpleMenu *menu_load = new SimpleMenu("Raw Out",menu_more,rawout);
   SimpleMenu *menu_about = new SimpleMenu("About",menu_more,SMN_screensaver);
@@ -284,4 +285,5 @@ void setup() {
 void loop() {
   SMN_loop(); //MUST BE REGULARY CALLED.
   delay(5);
+  signal433_current = signal433_store[pcurrent];
 }

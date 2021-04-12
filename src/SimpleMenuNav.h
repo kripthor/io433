@@ -3,6 +3,7 @@
 #include "Free_Fonts.h"
 #include <TFT_eSPI.h> 
 
+
 #define BUTTON_UP  35
 #define BUTTON_DOWN  0
 #define LONGCLICK_MS 300
@@ -17,6 +18,12 @@ Button2 butDown = Button2(BUTTON_DOWN);
 bool needsRefresh = true;
 bool needsExitFromAction = false;
 long lastClick;
+
+//TODO: REFACTOR
+#define MAXSIGS 10
+int pcurrent = 0;
+
+
 
 SimpleMenu* active_menu = NULL;
 TFT_eSPI tft = TFT_eSPI();
@@ -83,6 +90,16 @@ void SMN_handler(Button2& btn) {
               }
            }
             break;
+        case DOUBLE_CLICK:
+            if (btn.getAttachPin() == BUTTON_UP) {
+              pcurrent ++;
+              if (pcurrent >= MAXSIGS) pcurrent = 0;
+            }
+            else {
+              pcurrent --;
+              if (pcurrent < 0) pcurrent = MAXSIGS -1;
+            }
+            break;
         default:
             Serial.println(String(btn.getClickType()) + " click type / Not implemented ");
             break;
@@ -131,12 +148,14 @@ void SMN_initMenu(SimpleMenu *menu) {
   butUp.setDoubleClickTime(300);
   butUp.setClickHandler(SMN_handler);
   butUp.setLongClickHandler(SMN_handler);
-
+  butUp.setDoubleClickHandler(SMN_handler);
+ 
   butDown.setLongClickTime(300);
   butDown.setDoubleClickTime(300);  
   butDown.setClickHandler(SMN_handler);
   butDown.setLongClickHandler(SMN_handler);
-  
+  butDown.setDoubleClickHandler(SMN_handler);
+ 
   active_menu = menu;
 
   tft.init();
@@ -158,6 +177,12 @@ void SMN_printMenu() {
   tft.setFreeFont(FMB18);         
   tft.setTextColor(TFT_YELLOW, TFT_BLACK);
   SMN_printAt(active_menu->name, 10, 2);
+
+  tft.setTextColor(TFT_RED, TFT_BLACK);
+  String p = "[";
+  p+=pcurrent;
+  p+="]";
+  SMN_printAt(p, 180, 2);
  
   tft.setFreeFont(FMB12);         
   tft.setTextColor(TFT_GREEN, TFT_BLACK);
