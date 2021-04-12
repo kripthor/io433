@@ -1,6 +1,8 @@
+#include "spiffsutils.h"
 #include "CC1101utils.h"
 #include "SimpleMenuNav.h"
 #include "WiFi.h"
+
 
 #define BUFSIZE 2048
 #define REPLAYDELAY 0
@@ -96,6 +98,8 @@ void copy() {
     if (i < BUFSIZE) signal433_current[i+1] = 200;
   }
   
+  String fname = "/" + String(pcurrent) +".bin";
+  storeSPIFFS(fname.c_str(),signal433_current,BUFSIZE);
 }
 
 
@@ -278,6 +282,22 @@ void setup() {
   //// ENSURE RADIO OFF FOR LESS INTERFERENCE
   WiFi.mode(WIFI_OFF);
   btStop();
+
+  
+  if(!SPIFFS.begin(FORMAT_SPIFFS_IF_FAILED)){
+    Serial.println("SPIFFS Mount Failed");
+    return;
+  }
+
+  Serial.println("List SPIFFS:");
+  listSPIFFS("/", 1);
+  Serial.println("Loading files...");
+  
+  for (int f=0;f<MAXSIGS;f++) {
+    String fname = "/" + String(f) +".bin";
+    loadSPIFFS(fname.c_str(),signal433_store[f],BUFSIZE);
+  }
+  
   
 }
 

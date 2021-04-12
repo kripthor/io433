@@ -167,7 +167,7 @@ void SMN_initMenu(SimpleMenu *menu) {
   SMN_printAt("|_ _/ _ \\| | |__ /__ /",0,26*2-16);
   SMN_printAt(" | | (_) |_  _|_ \\|_ \\",0,26*3-16);
   SMN_printAt("|___\\___/  |_|___/___/",0,26*4-16);
-  delay(3000);
+  delay(1000);
  
 }
 
