@@ -207,7 +207,7 @@ void SMN_loop() {
   butDown.loop();
   yield();
   if (needsRefresh) {
-    Serial.println("Refreshing screen");
+    //Serial.println("Refreshing screen");
     SMN_printMenu();
   }
   yield();

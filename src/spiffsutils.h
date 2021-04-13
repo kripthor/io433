@@ -1,35 +1,31 @@
 #include "FS.h"
 #include "SPIFFS.h"
 
-/* You only need to format SPIFFS the first time you run a
-   test or else use the SPIFFS plugin to create a partition
-   https://github.com/me-no-dev/arduino-esp32fs-plugin */
-
 #define FORMAT_SPIFFS_IF_FAILED true
 
 void listSPIFFS(const char * dirname, uint8_t levels){
-    Serial.printf("Listing directory: %s\r\n", dirname);
+    Serial.printf("Listing directory: %s\n", dirname);
 
     File root = SPIFFS.open(dirname);
     if(!root){
-        Serial.println("- failed to open directory");
+        Serial.printf("Open failed for %s\n",dirname);
         return;
     }
     if(!root.isDirectory()){
-        Serial.println(" - not a directory");
+        Serial.printf("%s is not a directory\n",dirname);
         return;
     }
 
     File file = root.openNextFile();
     while(file){
         if(file.isDirectory()){
-            Serial.print("  DIR : ");
+            Serial.print(" DIR : ");
             Serial.println(file.name());
             if(levels){
                 listSPIFFS(file.name(), levels -1);
             }
         } else {
-            Serial.print("  FILE: ");
+            Serial.print(" FILE: ");
             Serial.print(file.name());
             Serial.print("\tSIZE: ");
             Serial.println(file.size());
@@ -39,11 +35,10 @@ void listSPIFFS(const char * dirname, uint8_t levels){
 }
 
 void loadSPIFFS(const char * path, uint16_t *signal433_store, uint16_t size){
-    Serial.printf("Reading file: %s\r\n", path);
+    Serial.printf("Reading file: %s\n", path);
     File file = SPIFFS.open(path);
     if(!file || file.isDirectory()){
-        Serial.print("Open failed for ");
-        Serial.println(path);
+        Serial.printf("Load failed for %s\n",path);
         return;
     }
     int i = 0;
@@ -57,8 +52,7 @@ void storeSPIFFS(const char * path, uint16_t *signal433_store, uint16_t size){
     Serial.printf("Writing file: %s\r\n", path);
     File file = SPIFFS.open(path, FILE_WRITE);
     if(!file){
-        Serial.print("Write failed for ");
-        Serial.println(path);
+       Serial.printf("Store failed for %s\n",path);
         return;
     }
    int i = 0;

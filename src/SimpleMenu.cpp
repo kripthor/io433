@@ -1,7 +1,8 @@
+#include <Arduino.h>
+
 #include "SimpleMenu.h"
 
 
-/////////////////////////////////////////////////////////////////
 SimpleMenu::SimpleMenu(char* value) {
   name = value;  
   parent = NULL;
