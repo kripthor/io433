@@ -1,8 +1,20 @@
-# IO433
+```bash
+ ___ ___  _ _ ________
+|_ _/ _ \| | |__ /__ /
+ | | (_) |_  _|_ \|_ \
+|___\___/  |_|___/___/
+                       
+```
 
-![logo](docs/logo.png)
+## Description
 
-ESP32 (TTGO T-Display) & CC1101 based 433Mhz sniffer
+IO433 is an ESP32 (TTGO T-Display) & CC1101 based 433Mhz sniffer.
+It can sniff, store, replay, dump and monitor most 433Mhz (currently ASK-OOK onyl) signals.
+These include garage door openers, remote doorbells, sensors and similar devices.
+
+The core of this project aims to be it's simplicity, reliability versatility.
+With a couple of ICs and a 'connecting some wires', one can start messing around with the 433Mhz devices and decode their communications protocols.
+It's mainly a proof-of-concept but already encompasses several very useful features.
 
 ```bash
 │  # The current dir is a platformIO project and can be imported straight for here.
@@ -20,7 +32,7 @@ ESP32 (TTGO T-Display) & CC1101 based 433Mhz sniffer
 
 ![IO433 Parts](docs/parts.png)
 
-* All the components can be found in the usual online stores such as *Aliexpress* and *eBay*.
+* All the components can be easily found in the usual online stores such as *Aliexpress*, *Amazon*, *eBay*, etc.
 
 
 ## IO433 Wiring
@@ -37,7 +49,7 @@ This is just a suggestion on how to wire the ESP32 and the CC1101. A perforated 
 
 Details of the wiring between the ESP32 and CC1101. The pinout choosing is important. If changed, not only the code should change to reflect the new pinout, as one must make sure the corresponding ports on the ESP32 support the I/O operation mode that the code needs. 
 
-## How to flash IO433
+## How to flash IO433   
 
 ### Using [Platformio](https://platformio.org/)
 
@@ -53,10 +65,10 @@ Plug the ESP32 to a battery or a USB-C cable. The current menu structure is the 
 │ Main
 ├── Copy   # Copy signal to current memory bank
 ├── Replay # Replay signal from current memory bank
-├── Dump   # Dump current memory bank to screen
+├── Dump   # Dump current memory bank to screen and serial (fixed 100kbps, for easy analysis on third party software [ex. PulseView])
 └── More
     ├── Monitor # Dump raw signal to screen and RSSI info
-    ├── Raw Out # Dump current signal to serial as fast as possible (default 1000000bps serial)
+    ├── Raw Out # Dump current signal to serial as fast as possible (default 1Mbps serial)
     ├── About   # About menu
 ```
 
