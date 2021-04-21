@@ -1,3 +1,5 @@
+# Project IO433
+
 ```
  ___ ___  _ _ ________
 |_ _/ _ \| | |__ /__ /
@@ -5,15 +7,14 @@
 |___\___/  |_|___/___/
                        
 ```
-
 ## Description
 
 IO433 is an ESP32 (TTGO T-Display) & CC1101 based 433Mhz sniffer.
 It can sniff, store, replay, dump and monitor most 433Mhz (currently ASK-OOK onyl) signals.
 These include garage door openers, remote doorbells, sensors and similar devices.
 
-The core of this project aims to be it's simplicity, reliability versatility.
-With a couple of ICs and a 'connecting some wires', one can start messing around with the 433Mhz devices and decode their communications protocols.
+The core of this project aims to be its simplicity, reliability and versatility.
+With a couple of ICs and a by 'connecting some wires', one can start messing around with 433Mhz devices and decode their communications protocols.
 It's mainly a proof-of-concept but already encompasses several very useful features.
 
 ```bash
@@ -26,8 +27,8 @@ It's mainly a proof-of-concept but already encompasses several very useful featu
 
 | Qty. | Description | Obs. |
 |------|------------------------|-----------------------------------------------------------------|
-| 1 | ESP32 TTGO T-Display | ESP32 controller with two buttons and small LCD for navigation |
-| 1 | TI-CC1101 | A CC1101 based module for 433Mhz communications |
+| 1 | ESP32 TTGO T-Display | ESP32 controller with a 1.14" LCD and two buttons for navigation |
+| 1 | TI-CC1101 | A CC1101 based module for 433Mhz (and other frequencies) communications |
 | 8 | Wires | Some wires :) |
 
 ![IO433 Parts](docs/parts.png)
@@ -57,9 +58,9 @@ Details of the wiring between the ESP32 and CC1101. The pinout choosing is impor
 * Open in PlatformIO
 * Build and upload
 
-## How to use it?
+## How to use it
 
-Plug the ESP32 to a battery or a USB-C cable. The current menu structure is the following:
+Plug the ESP32 to a battery or a to a USB-C cable. The current menu structure is the following:
 
 ```bash
 │ Main
@@ -69,13 +70,29 @@ Plug the ESP32 to a battery or a USB-C cable. The current menu structure is the 
 └── More
     ├── Monitor # Dump raw signal to screen and RSSI info
     ├── Raw Out # Dump current signal to serial as fast as possible (default 1Mbps serial)
-    ├── About   # About menu
+    └── About   # About menu
 ```
 
-Button behaviour:
+## Button behaviour
 
 * UP and DOWN short press, moves between menu items
 * UP long press is moves back a level
 * DOWN long press enters current submenu or function
 * UP or DOWN double press moves back and forward from memory banks (to store/replay multiple signals) 
 
+## Improvements
+
+There are many possibilities for improvements:
+
+* Code refactoring
+* Better SPIFFS management
+* Configuration menus for changing output data rates and formats
+* Configuration menus for CC1101 setup: frequencies, modulations, data rates and bandwidth
+* Implement other modulations besides ASK-OOK
+* and so forth...
+
+Feel free to clone and play around, as well as to contribute and make a pull request.
+
+## Kudos
+
+Shameless README.md 'template' rip from [@jpdias](https://github.com/jpdias)
