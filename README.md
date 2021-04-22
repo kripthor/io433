@@ -9,8 +9,8 @@
 ```
 ## Description
 
-IO433 is an ESP32 (TTGO T-Display) & CC1101 based 433Mhz sniffer.
-It can sniff, store, replay, dump and monitor most 433Mhz (currently ASK-OOK onyl) signals.
+IO433 is an open-source ESP32 (TTGO T-Display) & CC1101 based 433Mhz sniffer.
+It can sniff, store, replay, dump and monitor most 433Mhz (currently ASK-OOK only) signals.
 These include garage door openers, remote doorbells, sensors and similar devices.
 
 The core of this project aims to be its simplicity, reliability and versatility.
@@ -89,6 +89,8 @@ There are many possibilities for improvements:
 * Configuration menus for changing output data rates and formats
 * Configuration menus for CC1101 setup: frequencies, modulations, data rates and bandwidth
 * Implement other modulations besides ASK-OOK
+* Add upload data files from PC to be replayed
+* Add accept from serial and transmit features
 * and so forth...
 
 Feel free to clone and play around, as well as to contribute and make a pull request.
