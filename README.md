@@ -18,7 +18,8 @@ With a couple of ICs and a by 'connecting some wires', one can start messing aro
 It's mainly a proof-of-concept but already encompasses several very useful features.
 
 ```bash
-│  # The current dir is a platformIO project and can be imported straight for here.
+│  # The current dir is a platformIO project and can be imported straight from here.
+├── arduino  # an example arduino project that implements a remote for some ASK-OOK-PWM signals based on a FS1000A
 ├── docs     # docs and pictures
 └── [others] # platformio project files and libraries
 ```
