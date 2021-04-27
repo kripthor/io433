@@ -21,6 +21,7 @@ It's mainly a proof-of-concept but already encompasses several very useful featu
 │  # The current dir is a platformIO project and can be imported straight from here.
 ├── arduino  # an example arduino project that implements a remote for some ASK-OOK-PWM signals based on a FS1000A
 ├── docs     # docs and pictures
+├── libsigrokdecode   # a modified PWM decoder that shows bits and nibbles (sigrok/PulseView)
 └── [others] # platformio project files and libraries
 ```
 
