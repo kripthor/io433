@@ -86,7 +86,7 @@ Plug the ESP32 to a battery or a to a USB-C cable. The current menu structure is
 
 There are many possibilities for improvements:
 
-* Code refactoring
+* Code refactoring. Make SimpleMenu a proper lib.
 * Better SPIFFS management
 * Configuration menus for changing output data rates and formats
 * Configuration menus for CC1101 setup: frequencies, modulations, data rates and bandwidth
