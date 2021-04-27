@@ -82,7 +82,15 @@ Plug the ESP32 to a battery or a to a USB-C cable. The current menu structure is
 * DOWN long press enters current submenu or function
 * UP or DOWN double press moves back and forward from memory banks (to store/replay multiple signals) 
 
-## Improvements
+## Dependencies
+
+This project uses:
+
+ * Button2 lib (which should auto-update on build via platformio.ini)
+ * SmartRC-CC1101-Driver-Lib (on /lib, added minor changes for the ESP32 TDisplay)
+ * TFT_eSPI (on /lib, added minor changes for the ESP32 TDisplay)
+
+# Improvements
 
 There are many possibilities for improvements:
 
