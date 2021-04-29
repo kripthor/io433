@@ -4,6 +4,8 @@
 #include "WiFi.h"
 
 
+#define LOOPDELAY 20
+#define HIBERNATEMS 30*1000
 #define BUFSIZE 2048
 #define REPLAYDELAY 0
 // THESE VALUES WERE FOUND PRAGMATICALLY
@@ -298,12 +300,22 @@ void setup() {
     loadSPIFFS(fname.c_str(),signal433_store[f],BUFSIZE);
   }
   
-  
+
+  //NEED TO DOUBLE CHECK THIS MATH
+  String vbat = String((float)( analogRead(34) / 4095.0 * 2 * 3.3 * 1.1));
+  SMN_alert("Bat = \n"+vbat+"v",100,1500);
 }
 
 
 void loop() {
   SMN_loop(); //MUST BE REGULARY CALLED.
-  delay(5);
+  delay(LOOPDELAY);
   signal433_current = signal433_store[pcurrent];
+
+  if (SMN_idleMS() > HIBERNATEMS) {
+    SMN_alert("SLEEPING...",100,3000);
+    esp_sleep_enable_ext0_wakeup(GPIO_NUM_35,0);
+   // esp_deep_sleep_pd_config(ESP_PD_DOMAIN_RTC_PERIPH, ESP_PD_OPTION_OFF);
+    esp_deep_sleep_start();
+  }
 }

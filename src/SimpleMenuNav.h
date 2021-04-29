@@ -3,7 +3,7 @@
 #include "Free_Fonts.h"
 #include <TFT_eSPI.h> 
 
-
+#define IO433VERSION "v0.2"
 #define BUTTON_UP  35
 #define BUTTON_DOWN  0
 #define LONGCLICK_MS 300
@@ -56,7 +56,6 @@ void SMN_handler(Button2& btn) {
     } 
     switch (btn.getClickType()) {
         case SINGLE_CLICK:
-            lastClick = millis();
             if (btn.getAttachPin() == BUTTON_UP) {
               int c = active_menu->getSelectedChild();
               if (c > 0) active_menu->setSelectedChild(--c);
@@ -85,6 +84,7 @@ void SMN_handler(Button2& btn) {
                    
                    if (clicked_menu->actionSelect != NULL) clicked_menu->actionSelect();
                    if (clicked_menu->alertDone) SMN_alert(String(clicked_menu->name)+" done!",500,0);
+                   lastClick = millis();
                    
                  }
               }
@@ -134,11 +134,13 @@ void SMN_screensaver() {
       tft.setTextColor(TFT_GREEN, TFT_BLACK);
       tft.drawChar(c, x, y, GFXFF);
       if (SMN_isAnyButtonPressed()) return;
+      lastClick = millis();
     }
     xx[col]++;
     if (xx[col] > 11) xx[col] = 0;
     tft.setFreeFont(FM12);
     tft.setTextColor(TFT_MAROON, TFT_DARKGREY);
+    tft.drawString(IO433VERSION, 10, 110, GFXFF);
     tft.drawString("@kripthor", 100, 110, GFXFF);
   }
 }
@@ -200,6 +202,10 @@ void SMN_printMenu() {
   needsRefresh = false;
 }
 
+
+long SMN_idleMS() {
+  return millis() - lastClick;
+}
 
 void SMN_loop() {
   butUp.loop();
