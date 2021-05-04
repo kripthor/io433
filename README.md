@@ -35,7 +35,7 @@ It's mainly a proof-of-concept but already encompasses several very useful featu
 
 ![IO433 Parts](docs/parts.png)
 
-* All the components can be easily found in the usual online stores such as *Aliexpress*, *Amazon*, *eBay*, etc.
+* All the components can be easily found in the usual online stores such as *AliExpress* ([ESP32](https://aliexpress.com/item/1005002283398938.html) - [CC1101](https://aliexpress.com/item/4001256083868.html)), *Amazon*, *eBay*, etc.
 
 
 ## IO433 Wiring
