@@ -29,13 +29,13 @@ It's mainly a proof-of-concept but already encompasses several very useful featu
 
 | Qty. | Description | Obs. |
 |------|------------------------|-----------------------------------------------------------------|
-| 1 | ESP32 TTGO T-Display @ [AliExpress](https://aliexpress.com/item/1005002283398938.html) | ESP32 controller with a 1.14" LCD and two buttons for navigation |
-| 1 | TI-CC1101 @ [AliExpress](https://aliexpress.com/item/4001256083868.html) | A CC1101 based module for 433Mhz (and other frequencies) communications |
+| 1 | ESP32 TTGO T-Display | ESP32 controller with a 1.14" LCD and two buttons for navigation |
+| 1 | TI-CC1101 | A CC1101 based module for 433Mhz (and other frequencies) communications |
 | 8 | Wires | Some wires :) |
 
 ![IO433 Parts](docs/parts.png)
 
-* All the components can be easily found in the usual online stores such as *Aliexpress*, *Amazon*, *eBay*, etc.
+* All the components can be easily found in the usual online stores such as *AliExpress* ([ESP32](https://aliexpress.com/item/1005002283398938.html) - [CC1101](https://aliexpress.com/item/4001256083868.html)), *Amazon*, *eBay*, etc.
 
 
 ## IO433 Wiring
