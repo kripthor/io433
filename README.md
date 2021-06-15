@@ -60,7 +60,7 @@ The full material is listed bellow:
 ![IO433 3D case with battery](docs/parts-battery.jpg)
 ![IO433 3D case with battery](docs/parts-solder.jpg)
 ![IO433 3D case with battery](docs/parts-assembly.jpg)
-![IO433 3D case with battery](docs/parts-assembly.jpg)
+![IO433 3D case with battery](docs/parts-assembly2.jpg)
 
 ### 3D case
 
