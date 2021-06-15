@@ -52,12 +52,28 @@ This is just a suggestion on how to wire the ESP32 and the CC1101. A perforated 
 
 Details of the wiring between the ESP32 and CC1101. The pinout choosing is important. If changed, not only the code should change to reflect the new pinout, as one must make sure the corresponding ports on the ESP32 support the I/O operation mode that the code needs. 
 
+### Assembly with battery and 3D printed case
+
+If you want, you can use the 3D printed case that supports a 902540 720mAh or even a 903048 1800mAh, 3.7V battery (should last for a day or two)
+The full material is listed bellow:
+
+![IO433 3D case with battery](docs/parts-battery.jpg)
+![IO433 3D case with battery](docs/parts-solder.jpg)
+![IO433 3D case with battery](docs/parts-assembly.jpg)
+![IO433 3D case with battery](docs/parts-assembly.jpg)
+
+### 3D case
+
+Tinker/download it from [tinkercad] (https://www.tinkercad.com/things/bPiFpUXC7pQ)
+or grab the STL from the [docs] (docs/IO433.stl)
+
 ## How to flash IO433   
 
 ### Using [Platformio](https://platformio.org/)
 
 * Clone this repository 
 * Open in PlatformIO
+* Connect USB-C cable to TTGO
 * Build and upload
 
 ## How to use it
