@@ -66,7 +66,7 @@ The full material is listed bellow:
 ### 3D case
 
 Tinker/download it from [tinkercad] (https://www.tinkercad.com/things/bPiFpUXC7pQ)
-or grab the STL from the [docs] (docs/IO433.stl)
+or grab the STL from the [docs] (https://github.com/kripthor/io433/blob/fbcaecf5ebcb276124eec70f2664558cd50d1374/docs/IO433.stl)
 
 ## How to flash IO433   
 
