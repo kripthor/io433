@@ -2,6 +2,11 @@
 #include "CC1101utils.h"
 #include "SimpleMenuNav.h"
 #include "WiFi.h"
+#include "esp_deep_sleep.h"
+#include "esp_bt_main.h"
+#include "esp_bt.h"
+#include "esp_wifi.h"
+#include "driver/adc.h"
 
 
 #define LOOPDELAY 20
@@ -281,11 +286,12 @@ void setup() {
   menu_about->alertDone = false;
   SMN_initMenu(menu_main);
  
-  //// ENSURE RADIO OFF FOR LESS INTERFERENCE
-  WiFi.mode(WIFI_OFF);
-  btStop();
+  //// ENSURE RADIO OFF (FOR LESS INTERFERENCE?)
+  esp_bluedroid_disable();
+  esp_bt_controller_disable();
+  esp_wifi_stop();
+  //adc_power_off();
 
-  
   if(!SPIFFS.begin(FORMAT_SPIFFS_IF_FAILED)){
     Serial.println("SPIFFS Mount Failed");
     return;
@@ -315,7 +321,13 @@ void loop() {
   if (SMN_idleMS() > HIBERNATEMS) {
     SMN_alert("SLEEPING...",100,3000);
     esp_sleep_enable_ext0_wakeup(GPIO_NUM_35,0);
-   // esp_deep_sleep_pd_config(ESP_PD_DOMAIN_RTC_PERIPH, ESP_PD_OPTION_OFF);
+    
+    esp_deep_sleep_pd_config(ESP_PD_DOMAIN_RTC_PERIPH, ESP_PD_OPTION_AUTO);
+    esp_deep_sleep_pd_config(ESP_PD_DOMAIN_RTC_SLOW_MEM, ESP_PD_OPTION_AUTO);
+    esp_deep_sleep_pd_config(ESP_PD_DOMAIN_RTC_FAST_MEM, ESP_PD_OPTION_AUTO);
+    esp_deep_sleep_pd_config(ESP_PD_DOMAIN_XTAL, ESP_PD_OPTION_AUTO);
+    ELECHOUSE_cc1101.goSleep();
+
     esp_deep_sleep_start();
   }
 }
