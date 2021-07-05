@@ -56,9 +56,10 @@ void storeSPIFFS(const char * path, uint16_t *signal433_store, uint16_t size){
         return;
     }
    int i = 0;
-   while(i++ < size){
+   while(i < size){
        file.write((unsigned char)(signal433_store[i]>>8 & 0xff));
        file.write((unsigned char)(signal433_store[i] & 0xff));
+       i++;
     }
 }
 
