@@ -90,6 +90,9 @@ int trycopy() {
 void copy() {
   int i, transitions = 0;
   lastCopyTime = 0;
+  CCInit();
+  CCSetRx();
+  delay(50);
   //FILTER OUT NOISE SIGNALS (too few transistions or too fast)
   while (transitions < MINIMUM_TRANSITIONS && lastCopyTime < MINIMUM_COPYTIME_US) {
     transitions = trycopy();
@@ -112,10 +115,12 @@ void copy() {
 
 
 void replay (int t) {
-   int i;
+  int i;
   unsigned int totalDelay = 0;
-  int64_t startus = esp_timer_get_time();
+  CCInit();
   CCSetTx();
+  delay(50);
+  int64_t startus = esp_timer_get_time();
   while (t-- > 0) {
     byte n = 0;
     for (i = 0; i < BUFSIZE; i++) {
@@ -185,6 +190,10 @@ void dump () {
 
 // THIS IS OBVIOUSLY SLOW
 void rawout() {
+  CCInit();
+  CCSetRx();
+  delay(50);
+
   byte b;
   bool endloop = false;
   long t = 0;
@@ -212,6 +221,9 @@ void rawout() {
 
 // THIS IS OBVIOUSLY NOT REAL TIME
 void monitormode() {
+  CCInit();
+  CCSetRx();
+  delay(50);
  
   int k = 1;
   int i = 0;
@@ -320,14 +332,13 @@ void loop() {
 
   if (SMN_idleMS() > HIBERNATEMS) {
     SMN_alert("SLEEPING...",100,3000);
-    esp_sleep_enable_ext0_wakeup(GPIO_NUM_35,0);
+    esp_sleep_enable_ext0_wakeup(GPIO_NUM_0,0);
     
     esp_deep_sleep_pd_config(ESP_PD_DOMAIN_RTC_PERIPH, ESP_PD_OPTION_AUTO);
     esp_deep_sleep_pd_config(ESP_PD_DOMAIN_RTC_SLOW_MEM, ESP_PD_OPTION_AUTO);
     esp_deep_sleep_pd_config(ESP_PD_DOMAIN_RTC_FAST_MEM, ESP_PD_OPTION_AUTO);
     esp_deep_sleep_pd_config(ESP_PD_DOMAIN_XTAL, ESP_PD_OPTION_AUTO);
     ELECHOUSE_cc1101.goSleep();
-
     esp_deep_sleep_start();
   }
 }

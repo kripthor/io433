@@ -962,8 +962,10 @@ void ELECHOUSE_CC1101::RegConfigSettings(void)
     SpiWriteReg(CC1101_FOCCFG,   0x16);
     SpiWriteReg(CC1101_BSCFG,    0x1C);
     SpiWriteReg(CC1101_AGCCTRL2, 0xC7);
+    //SpiWriteReg(CC1101_AGCCTRL2, 0xE4);
     SpiWriteReg(CC1101_AGCCTRL1, 0x00);
-    SpiWriteReg(CC1101_AGCCTRL0, 0xB2);
+    //SpiWriteReg(CC1101_AGCCTRL0, 0xB1);
+    SpiWriteReg(CC1101_AGCCTRL0, 0xB0);
     SpiWriteReg(CC1101_FSCAL3,   0xE9);
     SpiWriteReg(CC1101_FSCAL2,   0x2A);
     SpiWriteReg(CC1101_FSCAL1,   0x00);

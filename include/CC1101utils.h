@@ -1,17 +1,40 @@
 #include <ELECHOUSE_CC1101_SRC_DRV.h>
 
-#define CCGDO0 27
-#define CCGDO2 32
-#define CCSCK 26
-#define CCMISO 38
-#define CCMOSI 25
-#define CCCSN 33
+#define TICC1101
+//#define E07M1101D
+
+#ifdef TICC1101
+ #define CCGDO0 25
+ #define CCGDO2 27
+ #define CCSCK 2
+ #define CCMISO 33
+ #define CCMOSI 32
+ #define CCCSN 26
+#endif
+
+#ifdef E07M1101D
+ #define CCGDO0 27
+ #define CCGDO2 32
+ #define CCSCK 26
+ #define CCMISO 2
+ #define CCMOSI 25
+ #define CCCSN 33
+#endif
+
+void CCSetTx() {
+  pinMode(CCGDO0,OUTPUT);
+  ELECHOUSE_cc1101.SetTx();
+}
 
 void CCInit() {
+
   ELECHOUSE_cc1101.setSpiPin(CCSCK, CCMISO, CCMOSI, CCCSN);
   ELECHOUSE_cc1101.Init();                // must be set to initialize the cc1101!
   ELECHOUSE_cc1101.setGDO(CCGDO0, CCGDO2);
-  ELECHOUSE_cc1101.setMHZ(433.92);        // Here you can set your basic frequency. The lib calculates the frequency automatically (default = 433.92).The cc1101 can: 300-348 MHZ, 387-464MHZ and 779-928MHZ. Read More info from datasheet.
+ // ELECHOUSE_cc1101.setPA(8);
+  ELECHOUSE_cc1101.setMHZ(433.92);        // Here you can set your basic frequency. 
+                                          //The lib calculates the frequency automatically (default = 433.92).
+                                          //The cc1101 can do: 300-348 MHZ, 387-464MHZ and 779-928MHZ. Read More info from datasheet.
   ELECHOUSE_cc1101.setClb(1,13,15);
   ELECHOUSE_cc1101.setClb(2,16,19);
   ELECHOUSE_cc1101.setModulation(2);      // set modulation mode. 0 = 2-FSK, 1 = GFSK, 2 = ASK/OOK, 3 = 4-FSK, 4 = MSK.
@@ -24,8 +47,8 @@ void CCInit() {
 }
 
 void CCSetRx() {
-  ELECHOUSE_cc1101.SetRx();
   pinMode(CCGDO0,INPUT);  
+  ELECHOUSE_cc1101.SetRx();
 }
 
 void CCSetTx() {
@@ -50,5 +73,5 @@ byte CCAvgRead() {
 }
 
 void CCWrite(int b) {
- digitalWrite(CCGDO0,b);
+  digitalWrite(CCGDO0,b);
 }
