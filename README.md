@@ -9,12 +9,12 @@
 ```
 ## Description
 
-IO433 is an open-source ESP32 (TTGO T-Display) & CC1101 based 433Mhz sniffer.
+IO433 is an open-source ESP32 (TTGO T-Display) & CC1101 based 433Mhz sniffer. It is currently work in progress.
 It can sniff, store, replay, dump and monitor most 433Mhz (currently ASK-OOK only) signals.
 These include garage door openers, remote doorbells, sensors and similar devices.
 
 The core of this project aims to be its simplicity, reliability and versatility.
-With a couple of ICs and a by 'connecting some wires', one can start messing around with 433Mhz devices and decode their communications protocols.
+With a couple of ICs and a by 'connecting some wires', or soldering a breakout board, one can start messing around with 433Mhz devices and decode their communications protocols.
 It's mainly a proof-of-concept but already encompasses several very useful features.
 
 ```bash
@@ -30,12 +30,16 @@ It's mainly a proof-of-concept but already encompasses several very useful featu
 | Qty. | Description | Obs. |
 |------|------------------------|-----------------------------------------------------------------|
 | 1 | ESP32 TTGO T-Display | ESP32 controller with a 1.14" LCD and two buttons for navigation |
-| 1 | TI-CC1101 | A CC1101 based module for 433Mhz (and other frequencies) communications |
-| 8 | Wires | Some wires :) |
+| 1 | TI-CC1101 or E07-M1101D | CC1101 based modules for 433Mhz (and other frequencies) communications |
+| 1 | io433 PCB| Order a PCB or etch one or just grab some wires :) |
+| 1 | Battery | Optional 3.7v battery
+
 
 ![IO433 Parts](docs/parts.png)
+![IO433 PCB](docs/io433-pcb-v02.png)
 
-* All the components can be easily found in the usual online stores such as *AliExpress* ([ESP32](https://aliexpress.com/item/1005002283398938.html) - [CC1101](https://aliexpress.com/item/4001256083868.html)), *Amazon*, *eBay*, etc.
+* All the components can be easily found in the usual online stores such as *AliExpress* ([ESP32 TTGO T-Display](https://aliexpress.com/wholesale?SearchText=ttgo+t+display+esp32)) - [CC1101](https://aliexpress.com/wholesale?SearchText=cc1101)), *Amazon*, *eBay*, etc.
+* The breakout pcb and schematics files are under the docs/ directory 
 
 
 ## IO433 Wiring
@@ -44,29 +48,51 @@ It's mainly a proof-of-concept but already encompasses several very useful featu
 
 ![IO433 PCB](docs/io433-prototype.png)
 
-This is just a suggestion on how to wire the ESP32 and the CC1101. A perforated PCB can be used to make the prototype more sturdy.
+This is just a suggestion on how to wire the ESP32 and the CC1101. A perforated PCB can be used to make the prototype more sturdy. Or you can just order a pre-fabricated board, like the one bellow:
+
+TODO
 
 ### IO433 Wiring
 
 ![IO433 Wiring](docs/io433-wiring.png)
 
-Details of the wiring between the ESP32 and CC1101. The pinout choosing is important. If changed, not only the code should change to reflect the new pinout, as one must make sure the corresponding ports on the ESP32 support the I/O operation mode that the code needs. 
+Details of the wiring between the ESP32 and TI-CC1101 (E07-M1101D not depicted). The pinout choosing is important. If changed, not only the code should change to reflect the new pinout, as one must make sure the corresponding ports on the ESP32 support the I/O operation mode that the code needs. 
+**Important note**: the green wire connects to IO2 on the ESP32, regardless of what you see in some pictures.
 
-### Assembly with battery and 3D printed case
+### IO433 PCB Schematics
+docs/breakout.sch
+![IO433 3D case with battery](docs/pcb1.PNG)
+docs/breakout.brd
+![IO433 3D case with battery](docs/pcb2.PNG)
 
-If you want, you can use the 3D printed case that supports a 902540 720mAh or even a 903048 1800mAh, 3.7V battery (should last for a day or two)
+### Assembly with PCB
+
+Solder the CC1101 based module in the lower leftmost side of the pcb. The E07-M1101D will have 2x4 pins and the TI-CC1101 will have 2x5 pins. If you are using the E07-M1101D, connect the solderable jumper in the lower middle.  
+
+![IO433 3D case with battery](docs/pcbmount.jpg)
+
+Then just solder the ESP32 TTGO module on the PCB. Add a battery or just use the USB cable to power the module. Optionally print the 3D case for your CC1101 module. 
+
+
+### Assembly with battery and 3D printed case, no PCB
+
+If you want, you can use the 3D printed case that supports a 902540 720mAh or even a 903048 1800mAh, 3.7V battery (should last for some days)
 The full material is listed bellow:
 
 ![IO433 3D case with battery](docs/parts-battery.jpg)
-![IO433 3D case with battery](docs/parts-solder.jpg)
 ![IO433 3D case with battery](docs/parts-assembly.jpg)
 ![IO433 3D case with battery](docs/parts-assembly2.jpg)
 ![IO433 3D case with battery](docs/parts-case-white.jpg)
 
 ### 3D case
 
+NO PCB version:
 Tinker/download it from [tinkercad] (https://www.tinkercad.com/things/bPiFpUXC7pQ)
 or grab the STL from the [docs] (https://github.com/kripthor/io433/blob/fbcaecf5ebcb276124eec70f2664558cd50d1374/docs/IO433.stl)
+
+PCB Version:
+Tinker/download, both TI-CC1101 and E07-M1101 versions, from  [tinkercad] (https://www.tinkercad.com/things/6u9PguTRpU1-io433-v02)
+
 
 ## How to flash IO433   
 
