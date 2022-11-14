@@ -73,6 +73,7 @@ Solder the CC1101 based module in the lower leftmost side of the pcb. The E07-M1
 ![IO433 3D case with battery](docs/pcbmount.jpg)
 
 Then just solder the ESP32 TTGO module on the PCB. Add a battery or just use the USB cable to power the module. Optionally print the 3D case for your CC1101 module. 
+I've made an Youtube video to show how to assemble it in less than half an hour: [IO433 Assembly on Youtube](https://www.youtube.com/watch?v=Nz-Mw6mhYjg)
 
 
 ### Assembly with battery and 3D printed case, no PCB
