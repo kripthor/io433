@@ -50,13 +50,14 @@ It's mainly a proof-of-concept but already encompasses several very useful featu
 
 This is just a suggestion on how to wire the ESP32 and the CC1101. A perforated PCB can be used to make the prototype more sturdy. Or you can just order a pre-fabricated board, like the one bellow:
 
-![IO433 PCB](docs/io433-closeup.JPG)
+![IO433 PCB](docs/io433_closeup.JPG)
 
 ### IO433 Wiring
 
 ![IO433 Wiring](docs/io433-wiring.png)
+![IO433 Wiring](docs/io433-wiring2.png)
 
-Details of the wiring between the ESP32 and TI-CC1101 (E07-M1101D not depicted). The pinout choosing is important. If changed, not only the code should change to reflect the new pinout, as one must make sure the corresponding ports on the ESP32 support the I/O operation mode that the code needs. 
+Details of the wiring between the ESP32 and TI-CC1101 (above) and the E07-M1101D (below). The pinout choosing is important. If changed, not only the code should change to reflect the new pinout, as one must make sure the corresponding ports on the ESP32 support the I/O operation mode that the code needs. 
 **Important note**: the green wire connects to IO2 on the ESP32, regardless of what you see in some pictures.
 
 ### IO433 PCB Schematics
@@ -88,7 +89,7 @@ The full material is listed bellow:
 
 NO PCB version:
 Tinker/download it from [tinkercad] (https://www.tinkercad.com/things/bPiFpUXC7pQ)
-or grab the STL from the [docs] (https://github.com/kripthor/io433/blob/fbcaecf5ebcb276124eec70f2664558cd50d1374/docs/IO433.stl)
+or grab the STL from the [docs] (docs/IO433.stl)
 
 PCB Version:
 Tinker/download, both TI-CC1101 and E07-M1101 versions, from  [tinkercad] (https://www.tinkercad.com/things/6u9PguTRpU1-io433-v02)
