@@ -7,6 +7,7 @@
 |___\___/  |_|___/___/
                        
 ```
+
 ## Description
 
 IO433 is an open-source ESP32 (TTGO T-Display) & CC1101 based 433Mhz sniffer. It is currently work in progress.
@@ -89,11 +90,11 @@ The full material is listed bellow:
 ### 3D case
 
 NO PCB version:
-Tinker/download it from [tinkercad] (https://www.tinkercad.com/things/bPiFpUXC7pQ)
-or grab the STL from the [docs] (docs/IO433.stl)
+Tinker/download it from [tinkercad](https://www.tinkercad.com/things/bPiFpUXC7pQ)
+or grab the STL from the [docs](docs/IO433.stl)
 
 PCB Version:
-Tinker/download, both TI-CC1101 and E07-M1101 versions, from  [tinkercad] (https://www.tinkercad.com/things/6u9PguTRpU1-io433-v02)
+Tinker/download, both TI-CC1101 and E07-M1101 versions, from  [tinkercad](https://www.tinkercad.com/things/6u9PguTRpU1-io433-v02)
 
 
 ## How to flash IO433   
