@@ -3,7 +3,7 @@
 #define TICC1101
 //#define E07M1101D
 
-#ifdef TICC1101
+#ifdef E07M1101D
  #define CCGDO0 25
  #define CCGDO2 27
  #define CCSCK 2
@@ -12,7 +12,7 @@
  #define CCCSN 26
 #endif
 
-#ifdef E07M1101D
+#ifdef TICC1101
  #define CCGDO0 27
  #define CCGDO2 32
  #define CCSCK 26

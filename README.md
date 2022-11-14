@@ -50,7 +50,7 @@ It's mainly a proof-of-concept but already encompasses several very useful featu
 
 This is just a suggestion on how to wire the ESP32 and the CC1101. A perforated PCB can be used to make the prototype more sturdy. Or you can just order a pre-fabricated board, like the one bellow:
 
-TODO
+![IO433 PCB](docs/io433-closeup.JPG)
 
 ### IO433 Wiring
 
