@@ -40,7 +40,9 @@ It's mainly a proof-of-concept but already encompasses several very useful featu
 ![IO433 PCB](docs/io433-pcb-v02.png)
 
 * All the components can be easily found in the usual online stores such as *AliExpress* ([ESP32 TTGO T-Display](https://aliexpress.com/wholesale?SearchText=ttgo+t+display+esp32)) - [CC1101](https://aliexpress.com/wholesale?SearchText=cc1101)), *Amazon*, *eBay*, etc.
-* The breakout pcb and schematics files are under the docs/ directory 
+* The breakout pcb and schematics files are under the docs/ directory: 
+[IO433 Schematic](docs/breakout.sch)
+[IO433 Board](docs/breakout.brd)
 
 
 ## IO433 Wiring
