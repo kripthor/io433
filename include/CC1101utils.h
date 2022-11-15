@@ -51,11 +51,6 @@ void CCSetRx() {
   ELECHOUSE_cc1101.SetRx();
 }
 
-void CCSetTx() {
-  pinMode(CCGDO0,OUTPUT);
-  ELECHOUSE_cc1101.SetTx();
-}
-
 
 #define BAVGSIZE 11
 byte bavg[BAVGSIZE];
