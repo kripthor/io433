@@ -96,7 +96,7 @@ Tinker/download it from [tinkercad](https://www.tinkercad.com/things/bPiFpUXC7pQ
 or grab the STL from the [docs](docs/IO433.stl)
 
 PCB Version:
-Tinker/download, both TI-CC1101 and E07-M1101 versions, from  [tinkercad](https://www.tinkercad.com/things/6u9PguTRpU1-io433-v02)
+Tinker/download, both TI-CC1101 and E07-M1101 versions, from  [tinkercad](https://www.tinkercad.com/things/0qDgP6hPqE1)
 
 
 ## How to flash IO433   
