@@ -258,10 +258,11 @@ void SMN_dump(uint16_t signal433[], int bufsize, int maxt) {
   
   long total = 0;
   int trans = 0;
-  int n = 0;
+  int n = 1;
   int x1 = 0,x2 = 0,y = 0;
 
-  for (i = 0; i < bufsize; i++) {
+  //The first timing is always a zero
+  for (i = 1; i < bufsize; i++) {
     if (signal433[i] <= 0) break;
      total += signal433[i];
   }
@@ -272,7 +273,7 @@ void SMN_dump(uint16_t signal433[], int bufsize, int maxt) {
     
   long loctotal = 0;
   // Split into 2 lines
-  for (i = 0; i < trans-1; i++) {
+  for (i = 1; i < trans-1; i++) {
     x2 = (int)(signal433[i] / avg);
     loctotal += signal433[i];
     if (x1+x2 >= WIDTH-1) break;

@@ -2,7 +2,7 @@
 #include "CC1101utils.h"
 #include "SimpleMenuNav.h"
 #include "WiFi.h"
-#include "esp_deep_sleep.h"
+#include "esp_sleep.h"
 #include "esp_bt_main.h"
 #include "esp_bt.h"
 #include "esp_wifi.h"
@@ -14,12 +14,12 @@
 #define BUFSIZE 2048
 #define REPLAYDELAY 0
 // THESE VALUES WERE FOUND PRAGMATICALLY
-#define RESET443 32000 //32ms
+#define RESET443 64000 //32ms
 #define WAITFORSIGNAL 32 // 32 RESET CYCLES
 #define MINIMUM_TRANSITIONS 32
 #define MINIMUM_COPYTIME_US 16000
 #define DUMP_RAW_MBPS 0.1 // as percentage of 1Mbps, us precision. (100kbps) This is mainly to dump and analyse in, ex, PulseView
-#define BOUND_SAMPLES true
+#define BOUND_SAMPLES false
 
 //ONLY USING ONE BUFFER FOR NOW, MUST BE REFACTORED TO SUPPORT MORE (AND MOVE TO SPIFFS)
 uint16_t signal433_store[MAXSIGS][BUFSIZE];
@@ -334,10 +334,10 @@ void loop() {
     SMN_alert("SLEEPING...",100,3000);
     esp_sleep_enable_ext0_wakeup(GPIO_NUM_0,0);
     
-    esp_deep_sleep_pd_config(ESP_PD_DOMAIN_RTC_PERIPH, ESP_PD_OPTION_AUTO);
-    esp_deep_sleep_pd_config(ESP_PD_DOMAIN_RTC_SLOW_MEM, ESP_PD_OPTION_AUTO);
-    esp_deep_sleep_pd_config(ESP_PD_DOMAIN_RTC_FAST_MEM, ESP_PD_OPTION_AUTO);
-    esp_deep_sleep_pd_config(ESP_PD_DOMAIN_XTAL, ESP_PD_OPTION_AUTO);
+    esp_sleep_pd_config(ESP_PD_DOMAIN_RTC_PERIPH, ESP_PD_OPTION_AUTO);
+    esp_sleep_pd_config(ESP_PD_DOMAIN_RTC_SLOW_MEM, ESP_PD_OPTION_AUTO);
+    esp_sleep_pd_config(ESP_PD_DOMAIN_RTC_FAST_MEM, ESP_PD_OPTION_AUTO);
+    esp_sleep_pd_config(ESP_PD_DOMAIN_XTAL, ESP_PD_OPTION_AUTO);
     ELECHOUSE_cc1101.goSleep();
     esp_deep_sleep_start();
   }

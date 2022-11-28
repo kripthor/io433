@@ -22,8 +22,10 @@ It's mainly a proof-of-concept but already encompasses several very useful featu
 │  # The current dir is a platformIO project and can be imported straight from here.
 ├── arduino  # an example arduino project that implements a remote for some ASK-OOK-PWM signals based on a FS1000A
 ├── docs     # docs and pictures
+├── include  # project helper files 
+├── lib    #some needed libraries with specific modifications for this project
 ├── libsigrokdecode   # a modified PWM decoder that shows bits and nibbles (sigrok/PulseView)
-└── [others] # platformio project files and libraries
+└── src # project main files
 ```
 
 ## Bill of Materials
@@ -61,7 +63,8 @@ This is just a suggestion on how to wire the ESP32 and the CC1101. A perforated 
 ![IO433 Wiring](docs/io433-wiring2.png)
 
 Details of the wiring between the ESP32 and TI-CC1101 (above) and the E07-M1101D (below). The pinout choosing is important. If changed, not only the code should change to reflect the new pinout, as one must make sure the corresponding ports on the ESP32 support the I/O operation mode that the code needs. 
-**Important note**: the green wire connects to IO2 on the ESP32, regardless of what you see in some pictures.
+* **Important note**: the green wire connects to IO2 on the ESP32, regardless of what you see in some pictures.
+* **Important note 2**: You need to change the file ./include/CC1101utils.h to reflect which CC1101 model you are using.
 
 ### IO433 PCB Schematics
 docs/breakout.sch
@@ -103,8 +106,11 @@ Tinker/download, both TI-CC1101 and E07-M1101 versions, from  [tinkercad](https:
 
 ### Using [Platformio](https://platformio.org/)
 
-* Clone this repository 
-* Open in PlatformIO
+* Install Visual Studio
+* Install PlatformIO from the Extensions (restart)
+* Install the Espressif 32 platform from the PlatformIO Embedded tab (restart)
+* Clone the repository
+* Change the file ./include/CC1101utils.h and uncomment your CC1101 version(either the TICC1101 or the E07M1101D)
 * Connect USB-C cable to TTGO
 * Build and upload
 
@@ -155,4 +161,6 @@ Feel free to clone and play around, as well as to contribute and make a pull req
 
 ## Kudos
 
-Shameless README.md 'template' rip from [@jpdias](https://github.com/jpdias)
+* [LSatan](https://github.com/LSatan), for the SmartRC-CC1101-Driver-Lib
+* the [TFT_eSPI Library](https://github.com/Bodmer/TFT_eSPI)
+* Shameless README.md 'template' rip from [jpdias](https://github.com/jpdias)

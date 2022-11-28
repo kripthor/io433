@@ -1,6 +1,6 @@
 #include <ELECHOUSE_CC1101_SRC_DRV.h>
 
-#define TICC1101
+//#define TICC1101
 //#define E07M1101D
 
 #ifdef E07M1101D
