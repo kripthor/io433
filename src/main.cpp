@@ -2,7 +2,7 @@
 #include "CC1101utils.h"
 #include "SimpleMenuNav.h"
 #include "WiFi.h"
-#include "esp_deep_sleep.h"
+#include "esp_sleep.h"
 #include "esp_bt_main.h"
 #include "esp_bt.h"
 #include "esp_wifi.h"
@@ -330,14 +330,15 @@ void loop() {
   delay(LOOPDELAY);
   signal433_current = signal433_store[pcurrent];
 
+
   if (SMN_idleMS() > HIBERNATEMS) {
     SMN_alert("SLEEPING...",100,3000);
     esp_sleep_enable_ext0_wakeup(GPIO_NUM_0,0);
     
-    esp_deep_sleep_pd_config(ESP_PD_DOMAIN_RTC_PERIPH, ESP_PD_OPTION_AUTO);
-    esp_deep_sleep_pd_config(ESP_PD_DOMAIN_RTC_SLOW_MEM, ESP_PD_OPTION_AUTO);
-    esp_deep_sleep_pd_config(ESP_PD_DOMAIN_RTC_FAST_MEM, ESP_PD_OPTION_AUTO);
-    esp_deep_sleep_pd_config(ESP_PD_DOMAIN_XTAL, ESP_PD_OPTION_AUTO);
+    esp_sleep_pd_config(ESP_PD_DOMAIN_RTC_PERIPH, ESP_PD_OPTION_AUTO);
+    esp_sleep_pd_config(ESP_PD_DOMAIN_RTC_SLOW_MEM, ESP_PD_OPTION_AUTO);
+    esp_sleep_pd_config(ESP_PD_DOMAIN_RTC_FAST_MEM, ESP_PD_OPTION_AUTO);
+    esp_sleep_pd_config(ESP_PD_DOMAIN_XTAL, ESP_PD_OPTION_AUTO);
     ELECHOUSE_cc1101.goSleep();
     esp_deep_sleep_start();
   }
