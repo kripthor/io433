@@ -187,25 +187,6 @@ void dump () {
  
 }
 
-/* void jam() {
-  /*
-  // jam loop
-  CCInit();
-  CCSetRx();
-  delay(50);
-  //FILTER OUT NOISE SIGNALS (too few transistions or too fast)
-  // if jamming mode activate continously send something over RF...
-  // populate cc1101 sending buffer with random values
-  randomSeed(analogRead(0));
-  
-  for (i = 0; i<60; i++)
-       { ccsendingbuffer[i] = (byte)random(255);  };        
-  // send these data to radio over CC1101
-  ELECHOUSE_cc1101.SendData(ccsendingbuffer,60);
-  if (SMN_isUpButtonPressed()) return;
-
-}
-*/
 
 void jam (int t) {
   int i;
@@ -328,6 +309,7 @@ void setup() {
   |-> REPLAY
   |-> DUMP
   |-> MORE
+      |-> JAM
       |-> MONITOR
       |-> RAW OUT
       |-> ABOUT
