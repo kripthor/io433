@@ -187,6 +187,57 @@ void dump () {
  
 }
 
+/* void jam() {
+  /*
+  // jam loop
+  CCInit();
+  CCSetRx();
+  delay(50);
+  //FILTER OUT NOISE SIGNALS (too few transistions or too fast)
+  // if jamming mode activate continously send something over RF...
+  // populate cc1101 sending buffer with random values
+  randomSeed(analogRead(0));
+  
+  for (i = 0; i<60; i++)
+       { ccsendingbuffer[i] = (byte)random(255);  };        
+  // send these data to radio over CC1101
+  ELECHOUSE_cc1101.SendData(ccsendingbuffer,60);
+  if (SMN_isUpButtonPressed()) return;
+
+}
+*/
+
+void jam (int t) {
+  int i;
+  unsigned int totalDelay = 0;
+  CCInit();
+  CCSetTx();
+  delay(50);
+  int64_t startus = esp_timer_get_time();
+  while (true) {
+    byte n = 0;
+    for (i = 0; i < 60; i++) {
+      CCWrite(n);
+      totalDelay = signal433_current[i]+delayus;
+      delayMicroseconds(totalDelay);
+      if (signal433_current[i] < RESET443) n = !n;
+    }
+     CCWrite(0);
+      if (SMN_isUpButtonPressed()) return;
+      while (SMN_isDownButtonPressed()) delay(100);
+  }
+  CCSetRx();
+  
+  int64_t stopus = esp_timer_get_time();
+  Serial.print("Jam Done (us): ");
+  Serial.println((long)(stopus - startus), DEC);
+
+}
+
+void jam () {
+  jam(1);
+}
+
 
 // THIS IS OBVIOUSLY SLOW
 void rawout() {
@@ -289,6 +340,7 @@ void setup() {
   SimpleMenu *menu_more = new SimpleMenu("More",menu_main,NULL);
 
   SimpleMenu *menu_monitor = new SimpleMenu("Monitor",menu_more,monitormode);
+  SimpleMenu *menu_jam = new SimpleMenu("Jam",menu_more,jam);
   SimpleMenu *menu_load = new SimpleMenu("Raw Out",menu_more,rawout);
   SimpleMenu *menu_about = new SimpleMenu("About",menu_more,SMN_screensaver);
 
