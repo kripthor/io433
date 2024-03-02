@@ -188,6 +188,38 @@ void dump () {
 }
 
 
+void jam (int t) {
+  int i;
+  unsigned int totalDelay = 0;
+  CCInit();
+  CCSetTx();
+  delay(50);
+  int64_t startus = esp_timer_get_time();
+  while (true) {
+    byte n = 0;
+    for (i = 0; i < 60; i++) {
+      CCWrite(n);
+      totalDelay = signal433_current[i]+delayus;
+      delayMicroseconds(totalDelay);
+      if (signal433_current[i] < RESET443) n = !n;
+    }
+     CCWrite(0);
+      if (SMN_isUpButtonPressed()) return;
+      while (SMN_isDownButtonPressed()) delay(100);
+  }
+  CCSetRx();
+  
+  int64_t stopus = esp_timer_get_time();
+  Serial.print("Jam Done (us): ");
+  Serial.println((long)(stopus - startus), DEC);
+
+}
+
+void jam () {
+  jam(1);
+}
+
+
 // THIS IS OBVIOUSLY SLOW
 void rawout() {
   CCInit();
@@ -277,6 +309,7 @@ void setup() {
   |-> REPLAY
   |-> DUMP
   |-> MORE
+      |-> JAM
       |-> MONITOR
       |-> RAW OUT
       |-> ABOUT
@@ -289,6 +322,7 @@ void setup() {
   SimpleMenu *menu_more = new SimpleMenu("More",menu_main,NULL);
 
   SimpleMenu *menu_monitor = new SimpleMenu("Monitor",menu_more,monitormode);
+  SimpleMenu *menu_jam = new SimpleMenu("Jam",menu_more,jam);
   SimpleMenu *menu_load = new SimpleMenu("Raw Out",menu_more,rawout);
   SimpleMenu *menu_about = new SimpleMenu("About",menu_more,SMN_screensaver);
 

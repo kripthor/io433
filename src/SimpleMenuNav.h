@@ -3,7 +3,7 @@
 #include "Free_Fonts.h"
 #include <TFT_eSPI.h> 
 
-#define IO433VERSION "v0.2"
+#define IO433VERSION "v0.21"
 #define BUTTON_UP  35
 #define BUTTON_DOWN  0
 #define LONGCLICK_MS 300

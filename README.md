@@ -7,6 +7,9 @@
 |___\___/  |_|___/___/
                        
 ```
+##
+This is a fork (v0.21) for my personal use of the original io433 project by Krypthor.
+Added "Jam" capability. This is really fun, no on in vincity can use 433Mhz devices :))
 
 ## Description
 
@@ -125,6 +128,7 @@ Plug the ESP32 to a battery or a to a USB-C cable. The current menu structure is
 ├── Dump   # Dump current memory bank to screen and serial (fixed 100kbps, for easy analysis on third party software [ex. PulseView])
 └── More
     ├── Monitor # Dump raw signal to screen and RSSI info
+    ├── Jam     # Simple jam / send random bits on radio
     ├── Raw Out # Dump current signal to serial as fast as possible (default 1Mbps serial)
     └── About   # About menu
 ```
